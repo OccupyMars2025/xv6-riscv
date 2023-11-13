@@ -1,3 +1,4 @@
+# [rsc committed on Aug 27, 2007](https://github.com/OccupyMars2025/xv6-riscv/commit/629c1fe743c681c950805b2f3802c90026e58224)
 ```
 xv6 is a re-implementation of Dennis Ritchie's and Ken Thompson's Unix
 Version 6 (v6).  xv6 loosely follows the structure and style of v6,
