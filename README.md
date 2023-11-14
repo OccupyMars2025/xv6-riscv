@@ -1,9 +1,5 @@
 # [earliest commit: rtm committed on Jun 12, 2006](https://github.com/OccupyMars2025/xv6-riscv/commit/55e95b16db458b7f9abeca96e541acbdf8d7f85b)
-# begin learning: 2023/11/9 7:00 
-# Round 1
-- [x] (11/9  7:00  - 11/10 17:00) chapter 1, 2
-- [x] (11/10 17:00 - 11/14  9:28) chapter 3: page tables
-- [ ] (11/14 9:28  - ) chapter 4: Traps and system calls
+
 ```
 It is easy for a kernel developer to omit a crucial check, and real-world kernels have a long
 history of missing checks whose absence can be exploited by user programs to obtain kernel priv-
