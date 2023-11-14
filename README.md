@@ -1,4 +1,5 @@
 # [earliest commit: rtm committed on Jun 12, 2006](https://github.com/OccupyMars2025/xv6-riscv/commit/55e95b16db458b7f9abeca96e541acbdf8d7f85b)
+# begin learning: 2023/11/9 7:00 
 ```
 It is easy for a kernel developer to omit a crucial check, and real-world kernels have a long
 history of missing checks whose absence can be exploited by user programs to obtain kernel priv-
