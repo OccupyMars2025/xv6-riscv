@@ -1,5 +1,11 @@
 # [earliest commit: rtm committed on Jun 12, 2006](https://github.com/OccupyMars2025/xv6-riscv/commit/55e95b16db458b7f9abeca96e541acbdf8d7f85b)
 ```
+It is easy for a kernel developer to omit a crucial check, and real-world kernels have a long
+history of missing checks whose absence can be exploited by user programs to obtain kernel priv-
+ileges. It is likely that xv6 doesn’t do a complete job of validating user-level data supplied to the
+kernel, which a malicious user program might be able to exploit to circumvent xv6’s isolation.
+```
+```
 xv6 is a re-implementation of Dennis Ritchie's and Ken Thompson's Unix
 Version 6 (v6).  xv6 loosely follows the structure and style of v6,
 but is implemented for a modern RISC-V multiprocessor using ANSI C.
