@@ -61,7 +61,8 @@ search path, you can run "make qemu".
 ```
 
 ![Screenshot from 2023-11-09 20-37-02](https://github.com/OccupyMars2025/xv6-riscv/assets/31559413/c63c0e15-f4cc-492f-9c86-c8a8e4055cf7)
-![Screenshot from 2023-11-16 10-37-00](https://github.com/OccupyMars2025/xv6-riscv/assets/31559413/c50e004f-a46f-42a6-8e40-1f7d2091eb28)
+![Screenshot from 2023-11-16 10-38-36](https://github.com/OccupyMars2025/xv6-riscv/assets/31559413/9ac1a729-662d-4037-b4c8-04ede26d47f9)
+
 
 ```
 The high-level path of a trap from
