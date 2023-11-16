@@ -1,4 +1,6 @@
 # [earliest commit: rtm committed on Jun 12, 2006](https://github.com/OccupyMars2025/xv6-riscv/commit/55e95b16db458b7f9abeca96e541acbdf8d7f85b)
+# [Robert Morris committed on May 31, 2019](https://github.com/OccupyMars2025/xv6-riscv/commit/2ec1959fd1016a18ef3b2d154ce7076be8f237e4)
+# [who is rtm?](https://en.wikipedia.org/wiki/Robert_Tappan_Morris)
 
 ```
 It is easy for a kernel developer to omit a crucial check, and real-world kernels have a long
@@ -59,3 +61,8 @@ search path, you can run "make qemu".
 ```
 
 ![Screenshot from 2023-11-09 20-37-02](https://github.com/OccupyMars2025/xv6-riscv/assets/31559413/c63c0e15-f4cc-492f-9c86-c8a8e4055cf7)
+```
+The high-level path of a trap from
+user space is uservec (kernel/trampoline.S:21), then usertrap (kernel/trap.c:37); and when re-
+turning, usertrapret (kernel/trap.c:90) and then userret (kernel/trampoline.S:101)
+```
