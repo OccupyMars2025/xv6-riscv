@@ -2,6 +2,8 @@
 
 ## https://en.wikipedia.org/wiki/Robert_Tappan_Morris
 ## https://people.csail.mit.edu/kaashoek/
+## [UART used by xv6](http://byterunner.com/16550.html)
+
 ```
 It is easy for a kernel developer to omit a crucial check, and real-world kernels have a long
 history of missing checks whose absence can be exploited by user programs to obtain kernel priv-
