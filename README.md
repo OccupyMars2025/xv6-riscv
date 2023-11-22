@@ -69,3 +69,6 @@ The high-level path of a trap from
 user space is uservec (kernel/trampoline.S:21), then usertrap (kernel/trap.c:37); and when re-
 turning, usertrapret (kernel/trap.c:90) and then userret (kernel/trampoline.S:101)
 ```
+
+![Screenshot from 2023-11-22 10-53-31](https://github.com/OccupyMars2025/xv6-riscv/assets/31559413/54f51920-5385-4b5c-a0db-349001e5b072)
+
