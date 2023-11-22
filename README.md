@@ -74,3 +74,11 @@ turning, usertrapret (kernel/trap.c:90) and then userret (kernel/trampoline.S:10
 
 ![Screenshot from 2023-11-22 10-53-31](https://github.com/OccupyMars2025/xv6-riscv/assets/31559413/54f51920-5385-4b5c-a0db-349001e5b072)
 
+## (page 65)Lock order
+```
+The file-system code contains xv6’s longest lock chains.
+For example, creating a file requires simultaneously holding a lock on the directory, a lock on the
+new file’s inode, a lock on a disk block buffer, the disk driver’s vdisk_lock, and the calling pro-
+cess’s p->lock. To avoid deadlock, file-system code always acquires locks in the order mentioned
+in the previous sentence.
+```
