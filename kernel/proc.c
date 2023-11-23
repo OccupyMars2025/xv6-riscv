@@ -211,6 +211,22 @@ void
 proc_freepagetable(pagetable_t pagetable, uint64 sz)
 {
   uvmunmap(pagetable, TRAMPOLINE, 1, 0);
+  /* 2023/11/13 14:00 
+  [NOT SOLVED]
+  I think it should be changed to:
+    uvmunmap(pagetable, TRAPFRAME, 1, 1);
+
+    the physical memory corresponding to "TRAPFRAME" should also be freed 
+
+    but after modification, the following error occurs:
+
+    hart 2 starting
+    hart 1 starting
+    usertrap(): unexpected scause 0x000000000000000c pid=1
+                sepc=0x0101010101010101 stval=0x0101010101010101
+    panic: init exiting
+
+  */
   uvmunmap(pagetable, TRAPFRAME, 1, 0);
   uvmfree(pagetable, sz);
 }
@@ -510,10 +526,12 @@ yield(void)
 }
 
 // A fork child's very first scheduling by scheduler()
-// will swtch to forkret.
+// will swtch to forkret. Because in "allocproc()", we have set "ra" register to the address of "forkret" function
+// p->context.ra = (uint64)forkret;
 void
 forkret(void)
 {
+  // boolean value: is it the first ?
   static int first = 1;
 
   // Still holding p->lock from scheduler.
@@ -677,7 +695,7 @@ procdump(void)
       state = states[p->state];
     else
       state = "???";
-    printf("%d %s %s", p->pid, state, p->name);
+    printf("PID:%d,  process state:%s,  process name:%s", p->pid, state, p->name);
     printf("\n");
   }
 }

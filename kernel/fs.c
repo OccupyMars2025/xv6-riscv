@@ -468,6 +468,9 @@ stati(struct inode *ip, struct stat *st)
 // Caller must hold ip->lock.
 // If user_dst==1, then dst is a user virtual address;
 // otherwise, dst is a kernel address.
+/* off: offset
+n: number of bytes to be read
+*/
 int
 readi(struct inode *ip, int user_dst, uint64 dst, uint off, uint n)
 {

@@ -102,7 +102,7 @@ walk(pagetable_t pagetable, uint64 va, int alloc)
   return &pagetable[PX(0, va)];
 }
 
-// Look up a virtual address, return the physical address,
+// Look up a virtual address, return the base physical address of the corresponding page,
 // or 0 if not mapped.
 // Can only be used to look up user pages.
 uint64
@@ -228,7 +228,7 @@ uvmalloc(pagetable_t pagetable, uint64 oldsz, uint64 newsz, int xperm)
   char *mem;
   uint64 a;
 
-  if(newsz < oldsz)
+  if(newsz <= oldsz)
     return oldsz;
 
   oldsz = PGROUNDUP(oldsz);
@@ -268,6 +268,7 @@ uvmdealloc(pagetable_t pagetable, uint64 oldsz, uint64 newsz)
 
 // Recursively free page-table pages.
 // All leaf mappings must already have been removed.
+// so now all 512 PTEs in 0-level page table should be 0
 void
 freewalk(pagetable_t pagetable)
 {
@@ -280,6 +281,9 @@ freewalk(pagetable_t pagetable)
       freewalk((pagetable_t)child);
       pagetable[i] = 0;
     } else if(pte & PTE_V){
+      /*Impossible!
+        because now all 512 PTEs in 0-level page table should be 0,
+        so panic */
       panic("freewalk: leaf");
     }
   }

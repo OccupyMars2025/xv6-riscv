@@ -141,7 +141,10 @@ consoleintr(int c)
   case C('P'):  // Print process list.
     procdump();
     break;
-  case C('U'):  // Kill line.
+  case C('U'):  // Kill line. 
+    /* TODO: 2023/11/21 10:00
+    a tab character seems to disrupt this functionality, fix it
+    */
     while(cons.e != cons.w &&
           cons.buf[(cons.e-1) % INPUT_BUF_SIZE] != '\n'){
       cons.e--;

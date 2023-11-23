@@ -49,6 +49,9 @@ exec(char *path, char **argv)
   if((pagetable = proc_pagetable(p)) == 0)
     goto bad;
 
+  /*
+  $ riscv64-unknown-elf-objdump -p user/_init
+  */
   // Load program into memory.
   for(i=0, off=elf.phoff; i<elf.phnum; i++, off+=sizeof(ph)){
     if(readi(ip, 0, (uint64)&ph, off, sizeof(ph)) != sizeof(ph))
@@ -57,10 +60,26 @@ exec(char *path, char **argv)
       continue;
     if(ph.memsz < ph.filesz)
       goto bad;
+    /** refer to page 41 of the book:
+exec loads bytes from the ELF file into memory at addresses specified by the ELF file. Users
+or processes can place whatever addresses they want into an ELF file. Thus exec is risky, because
+the addresses in the ELF file may refer to the kernel, accidentally or on purpose. The consequences
+for an unwary kernel could range from a crash to a malicious subversion of the kernel’s isolation
+mechanisms (i.e., a security exploit). Xv6 performs a number of checks to avoid these risks. For
+example if(ph.vaddr + ph.memsz < ph.vaddr) checks for whether the sum overflows a
+64-bit integer. The danger is that a user could construct an ELF binary with a ph.vaddr that
+points to a user-chosen address, and ph.memsz large enough that the sum overflows to 0x1000,
+which will look like a valid value. In an older version of xv6 in which the user address space also
+contained the kernel (but not readable/writable in user mode), the user could choose an address that
+corresponded to kernel memory and would thus copy data from the ELF binary into the kernel. In
+the RISC-V version of xv6 this cannot happen, because the kernel has its own separate page table;
+loadseg loads into the process’s page table, not in the kernel’s page table.
+    */
     if(ph.vaddr + ph.memsz < ph.vaddr)
       goto bad;
     if(ph.vaddr % PGSIZE != 0)
       goto bad;
+    
     uint64 sz1;
     if((sz1 = uvmalloc(pagetable, sz, ph.vaddr + ph.memsz, flags2perm(ph.flags))) == 0)
       goto bad;

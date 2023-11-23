@@ -15,6 +15,11 @@ main()
     printfinit();
     printf("\n");
     printf("xv6 kernel is booting\n");
+    printf("tips: refer to function 'void consoleintr(int c)'\n");
+    printf("tips: Control-P: print process list\n");
+    printf("tips: Control-U: kill(delete) the entered line\n");
+    printf("tips: Control-H: delete one char\n");
+    printf("tips: Control-D: wake up consoleread(), similar to 'Enter' key\n");
     printf("\n");
     kinit();         // physical page allocator
     kvminit();       // create kernel page table

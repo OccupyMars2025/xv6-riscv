@@ -1,6 +1,13 @@
 # Context switch
 #
 #   void swtch(struct context *old, struct context *new);
+# It does not save the program counter. Instead, swtch saves the ra register,
+# which holds the return address from which swtch was called
+# 
+# When swtch returns, it
+# returns to the instructions pointed to by the restored ra register, that is, the instruction from which
+# the new thread previously called swtch. In addition, it returns on the new thread’s stack, since
+# that’s where the restored sp points.
 # 
 # Save current registers in old. Load from new.	
 
