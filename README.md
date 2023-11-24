@@ -3,6 +3,7 @@
 ## https://en.wikipedia.org/wiki/Robert_Tappan_Morris
 ## https://people.csail.mit.edu/kaashoek/
 ## [UART used by xv6](http://byterunner.com/16550.html)
+# [tools to run xv6](https://pdos.csail.mit.edu/6.1810/2023/tools.html)
 
 ```
 It is easy for a kernel developer to omit a crucial check, and real-world kernels have a long
